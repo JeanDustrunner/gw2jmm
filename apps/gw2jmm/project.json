@@ -1,0 +1,104 @@
+{
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:application": {
+      "strict": true
+    }
+  },
+  "sourceRoot": "apps/gw2jmm/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/gw2jmm",
+        "index": "apps/gw2jmm/src/index.html",
+        "main": "apps/gw2jmm/src/main.ts",
+        "polyfills": "apps/gw2jmm/src/polyfills.ts",
+        "tsConfig": "apps/gw2jmm/tsconfig.app.json",
+        "assets": [
+          "apps/gw2jmm/src/favicon.ico",
+          "apps/gw2jmm/src/assets"
+        ],
+        "styles": [
+          "apps/gw2jmm/src/styles.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/gw2jmm/src/environments/environment.ts",
+              "with": "apps/gw2jmm/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "gw2jmm:build:production"
+        },
+        "development": {
+          "browserTarget": "gw2jmm:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "gw2jmm:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/gw2jmm/src/test.ts",
+        "polyfills": "apps/gw2jmm/src/polyfills.ts",
+        "tsConfig": "apps/gw2jmm/tsconfig.spec.json",
+        "karmaConfig": "apps/gw2jmm/karma.conf.js",
+        "assets": [
+          "apps/gw2jmm/src/favicon.ico",
+          "apps/gw2jmm/src/assets",
+          {
+            "glob": "{*loader.js,bundles/*.js}",
+            "input": "node_modules/@webcomponents/webcomponentsjs",
+            "output": "node_modules/@webcomponents/webcomponentsjs"
+          }
+        ],
+        "styles": [
+          "apps/gw2jmm/src/styles.css"
+        ],
+        "scripts": [
+          "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"
+        ]
+      }
+    }
+  }
+}
