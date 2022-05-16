@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'apikeys',
+  displayName: 'apiKeys',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -12,5 +12,5 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/libs/apikeys',
+  coverageDirectory: '../../coverage/libs/apiKeys',
 };

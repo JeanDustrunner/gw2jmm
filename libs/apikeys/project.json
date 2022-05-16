@@ -1,20 +1,20 @@
 {
   "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
-  "sourceRoot": "libs/apikeys/src",
+  "sourceRoot": "libs/apiKeys/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/apikeys/**/*.ts"]
+        "lintFilePatterns": ["libs/apiKeys/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/apikeys"],
+      "outputs": ["coverage/libs/apiKeys"],
       "options": {
-        "jestConfig": "libs/apikeys/jest.config.ts",
+        "jestConfig": "libs/apiKeys/jest.config.ts",
         "passWithNoTests": true
       }
     }

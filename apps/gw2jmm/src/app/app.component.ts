@@ -4,6 +4,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
 
 import '../components/nav-bar/nav-bar.component';
+import { StateService } from './services/state-service/state.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
+    public state: StateService,
     @Inject(DOCUMENT) public document: Document
     ) { }
 

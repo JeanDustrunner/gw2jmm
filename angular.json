@@ -2,7 +2,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
-    "apikeys": "libs/apikeys",
+    "apiKeys": "libs/apiKeys",
     "gw2jmm": "apps/gw2jmm",
     "users": "libs/users"
   },

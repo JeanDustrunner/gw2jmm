@@ -10,7 +10,8 @@ import { AuthModule } from '@auth0/auth0-angular';
 
 import { ItemPage } from '../pages/item/item-page.component';
 import { ProfilePage } from '../pages/profile/profile-page.component';
-import { PrismaService } from './services/prisma/prisma.service';
+import { ApiService } from './services/api-service/api.service';
+import { StateService } from './services/state-service/state.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,10 @@ import { PrismaService } from './services/prisma/prisma.service';
       cacheLocation: 'localstorage'
     }),
   ],
-  providers: [PrismaService],
+  providers: [
+    ApiService,
+    StateService
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

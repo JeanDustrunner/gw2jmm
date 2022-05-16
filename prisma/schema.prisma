@@ -8,15 +8,17 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  name  String? @db.VarChar(255)
-  email String  @unique @db.VarChar(255)
-  keys  APIKey?
+  id          Int      @id @default(autoincrement())
+  name        String?  @db.VarChar(255)
+  email       String   @unique @db.VarChar(255)
+  keys        ApiKey[]
+  activeKeyId Int?
 }
 
-model APIKey {
+model ApiKey {
   id     Int     @id @default(autoincrement())
-  key    String?
-  userId Int     @unique
+  key    String
+  desc   String?
+  userId Int
   User   User    @relation(fields: [userId], references: [id])
 }
