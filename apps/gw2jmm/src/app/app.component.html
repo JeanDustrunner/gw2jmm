@@ -1,18 +1,18 @@
 <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
 <!-- <ng-container *ngIf="state.currentUser; else loggedOut"> -->
-    <nav-bar
+    <app-nav-bar
             [navList]="this.navigationLinks"
             (loginLogout)="auth.logout({ returnTo: document.location.origin })"
             [loggedIn]="true"
-    ></nav-bar>
+    ></app-nav-bar>
 </ng-container>
 
 <ng-template #loggedOut>
-    <nav-bar 
+    <app-nav-bar 
             [navList]="this.navigationLinks"
             (loginLogout)="auth.loginWithRedirect()"
             [loggedIn]="false"
-    ></nav-bar>
+    ></app-nav-bar>
 </ng-template>
 
 <router-outlet></router-outlet>

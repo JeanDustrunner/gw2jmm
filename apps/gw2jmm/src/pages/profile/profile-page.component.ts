@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { AuthService } from "@auth0/auth0-angular";
+import { Component, OnInit, Inject } from "@angular/core";
 import { Observable } from "rxjs";
 import { ApiService } from "../../app/services/api-service/api.service";
 import { ApiKey, User } from "@prisma/client";
 import { StateService } from "../../app/services/state-service/state.service";
+import "../../components/table/app-table.component";
 
 @Component({
     selector: 'profile-page',
@@ -11,27 +11,28 @@ import { StateService } from "../../app/services/state-service/state.service";
   })
 export class ProfilePage implements OnInit {
 
-  // public $users!: Observable<User[]>
-  // public $apiKeys!: Observable<ApiKey[]>
-  // public $currentUser!: any
+  public $apiKeys!: Observable<ApiKey[]>;
 
   constructor(
-    public prisma: ApiService,
+    public api: ApiService,
     public state: StateService
   ) { };
 
-  // public userObserver = {
-  //   next: (x:any) => this.prisma.getUserByEmail(x['email']).subscribe(this.dbUser)
-  // }
-
-  // public dbUser = {
-  //   next: (e: any) => console.log('Wrzutka: ', e)
-  // }
+  public getKeys(): void {
+    if (this.state.currentUser) {
+      this.$apiKeys = this.api.getApiKeysForUser(this.state.currentUser.id);
+    } else {
+      this.state.currentUserReady?.subscribe({
+        next: () => {
+          console.log('USER READY!')
+          this.$apiKeys = this.api.getApiKeysForUser(this.state.currentUser.id);
+        }
+      })
+    }
+  }
 
   ngOnInit() {
-    // this.auth.user$.subscribe(this.userObserver);
-    // this.$users = this.prisma.getUsers();
-    // this.$apiKeys = this.prisma.getApiKeysForUser(1);
+    this.getKeys();
   }
 
   ngOnDestroy() {

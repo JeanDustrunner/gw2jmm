@@ -1,13 +1,16 @@
-import { Injectable, OnDestroy, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { ApiKey, User } from "@prisma/client";
 import { AuthService } from "@auth0/auth0-angular";
 import { ApiService } from "../api-service/api.service";
+import { Subject } from "rxjs";
 
 
 @Injectable({providedIn: 'root'})
 export class StateService {
     public currentUser!: User
+    public currentUserReady = new Subject
     public activeApiKey!: ApiKey
+    public activeApiKeyReady = new Subject
     private _auth0User!: {
         email: string,
         email_verified: boolean,
@@ -33,6 +36,7 @@ export class StateService {
         } else {
             console.log('Setting current user to: ', user);
             this.currentUser = user;
+            this.currentUserReady.next(true);
             if (user.activeKeyId) {
                 this.api.getApiKeyById(user.activeKeyId).subscribe(this.activeApiKeyObserver)
             }          
@@ -45,6 +49,7 @@ export class StateService {
         } else {
             console.log('Setting active apiKey to: ', apiKey);
             this.activeApiKey = apiKey;
+            this.activeApiKeyReady.next(true);
         }
     }
 
