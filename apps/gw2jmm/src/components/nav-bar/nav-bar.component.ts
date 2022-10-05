@@ -40,6 +40,10 @@ export class NavBar extends LitElement {
         this.dispatchEvent(new CustomEvent('loginLogout'));
     }
 
+    // connectedCallback(): void {
+    //     console.log('nav-bar connected: ', this.navList);
+    // }
+
 
     render() {
         return html `

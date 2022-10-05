@@ -1,13 +1,18 @@
-<ng-container *ngIf="this.$apiKeys | async">
-    <div>Straszne dupki</div>
-    <app-table [data]="this.$apiKeys | async"></app-table>
-</ng-container>
+
+<app-table
+    [data]="apiKeys"
+    [tableTitle]="'API Keys'"
+    [desc]="'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'"
+    [showHeaders]="true"
+    [tableHeaders]="ptr"
+></app-table>
 
 
-<div>Active API key:</div>
+
+<!-- <div>Active API key:</div>
 <div>{{ state.activeApiKey?.key }}</div>
 
-<div *ngFor="let key of $apiKeys | async">
+<div *ngFor="let key of apiKeys">
     <p>key:</p>
     <p>{{ key.key }}</p>
-</div>
+</div> -->
